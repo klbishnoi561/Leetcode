@@ -25,26 +25,51 @@ public:
 
 
 // MEMOIZATION
-    int solve(int i,vector<int>& arr,int n,int k,vector<vector<int>>& dp){
-        if(i==n || k==0) return 0;
-        if(dp[i][k]!=-1) return dp[i][k];
-        // k==2 you can buy aur buy not
-        if(k==2){
-            int c1 = solve(i+1,arr,n,k-1,dp)-arr[i]; // buy
-            int c2 = solve(i+1,arr,n,k,dp);  // buy not
-            return dp[i][k]=max(c1,c2);
-        }
-        else { // else means k==1 then you can only sell or sell not
-            int d1 = solve(i+1,arr,n,k-1,dp) + arr[i]; // sell
-            int d2 = solve(i+1,arr,n,k,dp); // sell not
-            return dp[i][k]=max(d1,d2);
+    // int solve(int i,vector<int>& arr,int n,int k,vector<vector<int>>& dp){
+    //     if(i==n || k==0) return 0;
+    //     if(dp[i][k]!=-1) return dp[i][k];
+    //     // k==2 you can buy aur buy not
+    //     if(k==2){
+    //         int c1 = solve(i+1,arr,n,k-1,dp)-arr[i]; // buy
+    //         int c2 = solve(i+1,arr,n,k,dp);  // buy not
+    //         return dp[i][k]=max(c1,c2);
+    //     }
+    //     else { // else means k==1 then you can only sell or sell not
+    //         int d1 = solve(i+1,arr,n,k-1,dp) + arr[i]; // sell
+    //         int d2 = solve(i+1,arr,n,k,dp); // sell not
+    //         return dp[i][k]=max(d1,d2);
             
-        }
-    }
-    int maxProfit(vector<int>& prices) {
-        int n = prices.size();
+    //     }
+    // }
+    // int maxProfit(vector<int>& prices) {
+    //     int n = prices.size();
+    //     int k = 2;
+    //     vector<vector<int>> dp(n,vector<int>(k+1,-1));
+    //     return solve(0,prices,n,k,dp);
+    // }/
+
+
+//TABULATION
+    int maxProfit(vector<int>& arr) {
+        int n = arr.size();
         int k = 2;
-        vector<vector<int>> dp(n,vector<int>(k+1,-1));
-        return solve(0,prices,n,k,dp);
+        vector<vector<int>> dp(n+1,vector<int>(k+1));
+        for(int i=0;i<=n;i++){
+            dp[i][0] = 0;
+        }
+        for(int j=0;j<=k;j++){
+            dp[n][j]=0;
+        }
+        for(int i=n-1;i>=0;i--){
+            for(int j=1;j<=k;j++){
+                if(j==2) dp[i][j] = max(dp[i+1][j-1]-arr[i],dp[i+1][j]);
+                else if(j==1) {
+                    dp[i][j] = max(dp[i+1][j-1]+arr[i],dp[i+1][j]);
+                }
+
+            }
+        }
+        return dp[0][k];
+
     }
 };
