@@ -54,7 +54,7 @@ public:
         int n = arr.size();
         int k = 2;
         vector<vector<int>> dp(n+1,vector<int>(k+1));
-        // for(int i=0;i<=n;i++){
+        // for(int i=0;i<=n;i++){/ // because vector already initialize with 0
         //     dp[i][0] = 0;
         // }
         // for(int j=0;j<=k;j++){
