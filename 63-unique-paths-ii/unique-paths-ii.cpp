@@ -1,5 +1,6 @@
 class Solution {
 public:
+//memoization  (practice ke time tabulation karna hai)
     int solve(int i,int j,int n,int m,vector<vector<int>>& dp,vector<vector<int>>& arr){
         if(i==n-1 && j==m-1) return 1;
         if(dp[i][j]!=-1) return dp[i][j];
