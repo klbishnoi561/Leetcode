@@ -36,3 +36,44 @@ public:
         return dp[0][0];
     }
 };
+// 1. Memoization
+
+// Tumhare memoization mein state (i, j) hai.
+
+// Number of states ≈ n²/2, aur har state mein constant work ho raha hai.
+
+// TC: O(n²)
+// SC: O(n²) → DP table
+// Recursion Stack: O(n)
+
+// So interview mein:
+
+// Time: O(n²)
+// Space: O(n²) + O(n) recursion stack = O(n²)
+
+// 2. Tabulation
+
+// Tumhare tabulation mein:
+
+// for(int i=n-1; i>=0; i--)
+//     for(int j=0; j<=i; j++)
+
+// Total iterations:
+
+// 1 + 2 + 3 + ... + n = O(n²)
+
+// TC: O(n²)
+// SC: O(n²) → DP table
+// No recursion stack
+
+// So:
+
+// Time: O(n²)
+// Space: O(n²)
+
+// Interview mein ekdum short:
+// Approach	Time	Space
+// Memoization	O(n²)	O(n²)
+// Tabulation	O(n²)	O(n²)
+
+// Important: Agar interviewer specifically bole "auxiliary space", to memoization mein recursion stack ko separately mention karna: O(n²) DP + O(n) stack.
