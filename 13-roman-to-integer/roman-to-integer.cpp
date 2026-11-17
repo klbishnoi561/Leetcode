@@ -21,7 +21,7 @@ public:
             }
             ind++;
         }
-        total = total + num(s[s.size()-1]);
+        total = total + num(s[ind]);
         return total;
 
         
